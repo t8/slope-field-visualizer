@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Slope Field Visualizer</title>
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+</head>
+<body>
+<section class="hero is-medium is-dark is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Slope Field Visualizer
+            </h1>
+            <hr class="has-background-primary" style="height: 10px; width: 5%;" />
+            <div class="columns">
+                <div class="column is-two-thirds">
+                    <div class="columns">
+                         <div class="column is-2">
+                             <h1 class="title is-4" style="margin-top: 10px;">dy/dx =</h1>
+                         </div>
+                        <div class="column is-10">
+                            <input id="expr" class="input is-medium" type="text" placeholder="Differential Equation" />
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <p class="title is-4 has-text-centered has-text-dark">
+                                Slope Color Key:
+                            </p>
+                            <div class="columns">
+                                <div class="column is-four-fifths">
+                                    <div class="columns is-gapless">
+                                        <div class="column is-half">
+                                            <div id="key-left" class="keys"></div>
+                                        </div>
+                                        <div class="column is-half">
+                                            <div id="key-right" class="keys"></div>
+                                        </div>
+                                    </div>
+                                    <div class="columns">
+                                        <div class="column is-one-third">
+                                            <p class="has-text-left">
+                                                Negative Slopes
+                                            </p>
+                                        </div>
+                                        <div class="column is-one-third">
+                                            <p class="has-text-centered">
+                                                0
+                                            </p>
+                                        </div>
+                                        <div class="column is-one-third">
+                                            <p class="has-text-right">
+                                                Positive Slopes
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column is-one-fifth">
+                                    <div id="key-undef" class="keys"></div>
+                                    <p class="has-text-centered" style="padding-top: 1.5rem;">
+                                        Undefined
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-one-third">
+                    <div class="card">
+                        <div class="card-content">
+                            <p class="title is-4 has-text-dark" id="output">
+
+                            </p>
+                            <p class="subtitle is-6 has-text-centered has-text-dark">
+                                Not what you mean? <i>Use parentheses!</i>
+                            </p>
+                        </div>
+                        <footer class="card-footer">
+                            <p class="card-footer-item">
+                                <button class="button is-primary is-light is-fullwidth" onclick="populateQuadrants()">Generate Visualization</button>
+                            </p>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section is-hidden" id="graph">
+    <h2 class="subtitle" id="position"></h2>
+    <div class="columns is-gapless is-multiline">
+        <!-- Quadrant 2 -->
+        <div class="column is-half quadrant">
+            <canvas id="q2" style="transform: scaleY(-1) scaleX(-1);"></canvas>
+        </div>
+        <!-- Quadrant 1 -->
+        <div class="column is-half quadrant">
+            <canvas id="q1" style="transform: scaleY(-1);"></canvas>
+        </div>
+        <!-- Quadrant 3 -->
+        <div class="column is-half quadrant">
+            <canvas id="q3" style="transform: scaleX(-1);"></canvas>
+        </div>
+        <!-- Quadrant 4 -->
+        <div class="column is-half quadrant">
+            <canvas id="q4"></canvas>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            A weekend project by <a class="has-text-primary" href="https://github.com/tbaumer22">Tate Berenbaum</a>. Find the code on <a class="has-text-primary" href="https://github.com/tbaumer22/slope-field-visualizer">GitHub</a>.
+        </p>
+    </div>
+</footer>
+
+<script src="static/math.js"></script>
+<script src="generator.js"></script>
+</body>
+</html>
