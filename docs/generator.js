@@ -315,16 +315,16 @@ function getMousePos(canvas, quadrant, event) {
     let x, y;
     if (quadrant === "1") {
         x = Math.round((event.clientX - rect.left) / 2);
-        y = Math.round(math.abs(event.clientY - rect.bottom) / 2);
+        y = Math.round(math.abs(event.clientY - rect.bottom) * 5);
     } else if (quadrant === "2") {
         x = Math.round((event.clientX - rect.right) / 2);
-        y = Math.round(math.abs(event.clientY - rect.bottom) / 2);
+        y = Math.round(math.abs(event.clientY - rect.bottom) * 5);
     } else if (quadrant === "3") {
         x = Math.round((event.clientX - rect.right) / 2);
-        y = -Math.round(math.abs(event.clientY - rect.top) / 2);
+        y = -Math.round(math.abs(event.clientY - rect.top) * 5);
     } else if (quadrant === "4") {
         x = Math.round((event.clientX - rect.left) / 2);
-        y = -Math.round(math.abs(event.clientY - rect.top) / 2);
+        y = -Math.round(math.abs(event.clientY - rect.top) * 5);
     }
     mousePos = {
         x: x,
