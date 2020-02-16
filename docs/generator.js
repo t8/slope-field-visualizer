@@ -8,6 +8,8 @@ let options = {
     implicit: 'hide'
 };
 
+let mousePos;
+
 let canvasOne = document.getElementById('q1');
 let ctxOne = canvasOne.getContext('2d');
 let canvasTwo = document.getElementById('q2');
@@ -308,17 +310,56 @@ function inputVal () {
     }
 }
 
-function getMousePos(canvas, event) {
+function getMousePos(canvas, quadrant, event) {
     let rect = canvas.getBoundingClientRect();
-    return {
-        x: Math.round((event.clientX - rect.left) / 2),
-        y: Math.round(math.abs(event.clientY - rect.bottom) / 2)
+    let x, y;
+    if (quadrant === "1") {
+        x = Math.round((event.clientX - rect.left) / 2);
+        y = Math.round(math.abs(event.clientY - rect.bottom) / 2);
+    } else if (quadrant === "2") {
+        x = Math.round((event.clientX - rect.right) / 2);
+        y = Math.round(math.abs(event.clientY - rect.bottom) / 2);
+    } else if (quadrant === "3") {
+        x = Math.round((event.clientX - rect.right) / 2);
+        y = -Math.round(math.abs(event.clientY - rect.top) / 2);
+    } else if (quadrant === "4") {
+        x = Math.round((event.clientX - rect.left) / 2);
+        y = -Math.round(math.abs(event.clientY - rect.top) / 2);
+    }
+    mousePos = {
+        x: x,
+        y: y
     };
 }
 
+function updatePosition() {
+    const code = parsedEquation.compile();
+    let scope = {
+        x: mousePos.x,
+        y: mousePos.y
+    };
+    let slope = code.evaluate(scope);
+    document.getElementById("position").innerHTML =
+        'Position: (' + mousePos.x + ',' + mousePos.y + ')<br />' +
+        'Slope Approximation: ' + slope.toString();
+}
+
 canvasOne.addEventListener('mousemove', function(evt) {
-    let mousePos = getMousePos(canvasOne, evt);
-    document.getElementById("position").innerText = 'Position: ' + mousePos.x + ',' + mousePos.y;
+    getMousePos(canvasOne, "1", evt);
+    updatePosition();
 }, false);
+canvasTwo.addEventListener('mousemove', function(evt) {
+    getMousePos(canvasTwo, "2", evt);
+    updatePosition();
+}, false);
+canvasThree.addEventListener('mousemove', function(evt) {
+    getMousePos(canvasThree, "3", evt);
+    updatePosition();
+}, false);
+canvasFour.addEventListener('mousemove', function(evt) {
+    getMousePos(canvasFour, "4", evt);
+    updatePosition();
+}, false);
+
 window.onload = inputVal;
 expr.oninput = inputVal;
