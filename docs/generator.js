@@ -362,4 +362,8 @@ canvasFour.addEventListener('mousemove', function(evt) {
 }, false);
 
 window.onload = inputVal;
+expr.value = '2x+y';
+inputVal();
+populateQuadrants();
+
 expr.oninput = inputVal;
