@@ -33,9 +33,9 @@
                             <p class="title is-4 has-text-centered has-text-dark">
                                 Slope Color Key:
                             </p>
-                            <div class="columns">
+                            <div class="columns is-mobile">
                                 <div class="column is-four-fifths">
-                                    <div class="columns is-gapless">
+                                    <div class="columns is-gapless is-mobile">
                                         <div class="column is-half">
                                             <div id="key-left" class="keys"></div>
                                         </div>
@@ -43,7 +43,7 @@
                                             <div id="key-right" class="keys"></div>
                                         </div>
                                     </div>
-                                    <div class="columns">
+                                    <div class="columns is-mobile">
                                         <div class="column is-one-third">
                                             <p class="has-text-left">
                                                 Negative Slopes
@@ -63,8 +63,11 @@
                                 </div>
                                 <div class="column is-one-fifth">
                                     <div id="key-undef" class="keys"></div>
-                                    <p class="has-text-centered" style="padding-top: 1.5rem;">
+                                    <p class="has-text-centered is-hidden-mobile" style="padding-top: 1.5rem;">
                                         Undefined
+                                    </p>
+                                    <p class="has-text-centered is-hidden-tablet is-hidden-desktop" style="padding-top: 1.5rem;">
+                                        Undef
                                     </p>
                                 </div>
                             </div>
@@ -94,7 +97,7 @@
 </section>
 <section class="section is-hidden" id="graph">
     <h2 class="subtitle" id="position"></h2>
-    <div class="columns is-gapless is-multiline">
+    <div class="columns is-gapless is-multiline is-mobile">
         <!-- Quadrant 2 -->
         <div class="column is-half quadrant">
             <canvas id="q2" style="transform: scaleY(-1) scaleX(-1);"></canvas>
