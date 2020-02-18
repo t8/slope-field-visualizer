@@ -333,8 +333,8 @@ function getMousePos(canvas, quadrant, event) {
     const rect = canvas.getBoundingClientRect();
     const curQuad = mouseQuadrants(rect)[quadrant];
     mousePos = {
-        x: Math.round((event.clientX - curQaud.x) / 2),
-        y: Math.round(Math.abs(event.clientY - curQaud.y) * 5)
+        x: Math.round((event.clientX - curQuad.x) / 2),
+        y: Math.round(Math.abs(event.clientY - curQuad.y) * 5)
     };
 }
 
