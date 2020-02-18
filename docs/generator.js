@@ -28,6 +28,25 @@ let dataThree = new Array(imageDataOne.data.length);
 let imageDataFour = ctxFour.getImageData(0, 0, canvasFour.width, canvasFour.height);
 let dataFour = new Array(imageDataOne.data.length);
 
+const mouseQaudrants = (rect) => {
+  1: {
+    x: rect.left,
+    y: rect.bottom
+  },
+  2: {
+    x: rect.right,
+    y: rect.bottom
+  },
+  3: {
+    x: rect.right,
+    y: rect.top
+  },
+  4: {
+    x: rect.left,
+    y: rect.top
+  }
+};
+
 function qOne() {
     let lMax = 0;
     let lMin = 0;
@@ -311,24 +330,11 @@ function inputVal () {
 }
 
 function getMousePos(canvas, quadrant, event) {
-    let rect = canvas.getBoundingClientRect();
-    let x, y;
-    if (quadrant === "1") {
-        x = Math.round((event.clientX - rect.left) / 2);
-        y = Math.round(math.abs(event.clientY - rect.bottom) * 5);
-    } else if (quadrant === "2") {
-        x = Math.round((event.clientX - rect.right) / 2);
-        y = Math.round(math.abs(event.clientY - rect.bottom) * 5);
-    } else if (quadrant === "3") {
-        x = Math.round((event.clientX - rect.right) / 2);
-        y = -Math.round(math.abs(event.clientY - rect.top) * 5);
-    } else if (quadrant === "4") {
-        x = Math.round((event.clientX - rect.left) / 2);
-        y = -Math.round(math.abs(event.clientY - rect.top) * 5);
-    }
+    const rect = canvas.getBoundingClientRect();
+    const curQuad = mouseQuadrants(rect)[quadrant];
     mousePos = {
-        x: x,
-        y: y
+        x: Math.round((event.clientX - curQuad.x) / 2),
+        y: Math.round(Math.abs(event.clientY - curQuad.y) * 5)
     };
 }
 
