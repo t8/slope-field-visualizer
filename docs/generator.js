@@ -28,7 +28,7 @@ let dataThree = new Array(imageDataOne.data.length);
 let imageDataFour = ctxFour.getImageData(0, 0, canvasFour.width, canvasFour.height);
 let dataFour = new Array(imageDataOne.data.length);
 
-const mouseQaudrants = rect => ({
+const mouseQuadrants = rect => ({
   1: {
     x: rect.left,
     y: rect.bottom
